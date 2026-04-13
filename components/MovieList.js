@@ -1,10 +1,16 @@
 import MovieCard from "./MovieCard";
 
-export default function MovieList() {
+export default function MovieList({ movies, loading, hasSearched }) {
+  if (loading) {
+    return null;
+  }
+
+  const sectionTitle = hasSearched ? "Search Results" : "Popular Movies";
+
   return (
     <section style={{ padding: "2rem" }}>
       <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
-        Search Results
+        {sectionTitle}
       </h2>
 
       <div
@@ -15,9 +21,9 @@ export default function MovieList() {
           flexWrap: "wrap",
         }}
       >
-        <MovieCard />
-        <MovieCard />
-        <MovieCard />
+        {movies.map((movie) => (
+          <MovieCard key={movie.id} movie={movie} />
+        ))}
       </div>
     </section>
   );

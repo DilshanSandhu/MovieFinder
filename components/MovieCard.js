@@ -1,4 +1,10 @@
-export default function MovieCard() {
+import Link from "next/link";
+
+export default function MovieCard({ movie }) {
+  const poster = movie.poster_path
+    ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+    : "https://via.placeholder.com/200x300?text=No+Image";
+
   return (
     <div
       style={{
@@ -10,12 +16,28 @@ export default function MovieCard() {
       }}
     >
       <img
-        src="https://placeholder.com"
-        alt="Movie Poster"
-        style={{ width: "100%", borderRadius: "6px" }}
+        src={poster}
+        alt={movie.title}
+        style={{
+          width: "100%",
+          borderRadius: "6px",
+          height: "280px",
+          objectFit: "cover",
+        }}
       />
-      <h3>Movie Title</h3>
-      <p>Release Year: 2025</p>
+      <h3>{movie.title}</h3>
+      <p>Release Year: {movie.release_date?.slice(0, 4) || "N/A"}</p>
+
+      <Link
+        href={`/movie/${movie.id}`}
+        style={{
+          display: "inline-block",
+          marginTop: "0.75rem",
+          textDecoration: "none",
+        }}
+      >
+        View Details
+      </Link>
     </div>
   );
 }
