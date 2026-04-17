@@ -8,7 +8,14 @@ export default function SearchBar({ query, setQuery, onSearch }) {
   };
 
   return (
-    <section style={{ padding: "1rem 2rem", textAlign: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        gap: "0.75rem",
+        flexWrap: "wrap",
+        alignItems: "center",
+      }}
+    >
       <input
         type="text"
         placeholder="Search for a movie..."
@@ -16,20 +23,33 @@ export default function SearchBar({ query, setQuery, onSearch }) {
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}
         style={{
-          padding: "0.75rem",
-          width: "260px",
-          marginRight: "0.5rem",
+          flex: "1 1 320px",
+          minWidth: "240px",
+          padding: "0.95rem 1rem",
+          borderRadius: "999px",
+          border: "1px solid rgba(255,255,255,0.12)",
+          backgroundColor: "rgba(255,255,255,0.08)",
+          color: "#fff",
+          outline: "none",
+          fontSize: "0.95rem",
         }}
       />
       <button
         onClick={onSearch}
         style={{
-          padding: "0.75rem 1rem",
+          padding: "0.95rem 1.4rem",
+          borderRadius: "999px",
+          border: "none",
           cursor: "pointer",
+          backgroundColor: "#e50914",
+          color: "#fff",
+          fontWeight: 700,
+          fontSize: "0.95rem",
+          boxShadow: "0 10px 25px rgba(229, 9, 20, 0.25)",
         }}
       >
         Search
       </button>
-    </section>
+    </div>
   );
 }
